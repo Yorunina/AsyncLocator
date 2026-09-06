@@ -20,13 +20,13 @@ public class SetNameFunctionMixin {
 			target = "Lnet/minecraft/world/item/ItemStack;setHoverName(Lnet/minecraft/network/chat/Component;)Lnet/minecraft/world/item/ItemStack;"
 		)
 	)
-	public ItemStack deferSetName(ItemStack stack, Component name) {
-		if (Services.CONFIG.explorationMapEnabled()) {
-			ALConstants.logDebug("Intercepted SetNameFunction#run call");
-			if (CommonLogic.isEmptyPendingMap(stack))
-				ExplorationMapFunctionLogic.cacheName(stack, name);
-		} else
-			stack.setHoverName(name);
-		return stack;
-	}
+    public ItemStack deferSetName(ItemStack stack, Component name) {
+        if (Services.CONFIG.explorationMapEnabled() && CommonLogic.isEmptyPendingMap(stack)) {
+            ALConstants.logDebug("Intercepted SetNameFunction#run call");
+            ExplorationMapFunctionLogic.cacheName(stack, name);
+        } else {
+            stack.setHoverName(name);
+        }
+        return stack;
+    }
 }

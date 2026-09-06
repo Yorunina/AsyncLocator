@@ -32,6 +32,18 @@ subprojects {
 
     repositories {
         mavenCentral()
+        // ForgeGradle/SpongeVanilla use Forge's Maven repository for
+        // Minecraft merge tooling and related artifacts.
+        maven {
+            name = 'Forge'
+            url = 'https://maven.minecraftforge.net/'
+        }
+        // VanillaGradle needs Mojang's library repository when its repository
+        // auto-injection is disabled.
+        maven {
+            name = 'Mojang Libraries'
+            url = 'https://libraries.minecraft.net/'
+        }
         maven {
             name = 'Sponge / Mixin'
             url = 'https://repo.spongepowered.org/repository/maven-public/'
@@ -60,3 +72,4 @@ subprojects {
         enabled = false
     }
 }
+

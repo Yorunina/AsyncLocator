@@ -9,6 +9,7 @@ base {
 }
 minecraft {
     version(minecraft_version)
+    injectRepositories(false)
     if (file("src/main/resources/${mod_id}.accesswidener").exists()) {
         accessWideners(file("src/main/resources/${mod_id}.accesswidener"))
     }
@@ -42,3 +43,4 @@ publishing {
         }
     }
 }
+
